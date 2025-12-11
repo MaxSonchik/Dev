@@ -1,0 +1,54 @@
+name: DevOS Demo Pipeline
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  workflow_dispatch: # Позволяет запускать вручную
+
+jobs:
+  build-core:
+    name: 📦 Build Core
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Simulating Build
+        run: |
+          echo "Compiling Kernel..."
+          sleep 10
+          echo "Done."
+
+  security-scan:
+    name: 🛡️ Security Check
+    needs: build-core
+    runs-on: ubuntu-latest
+    steps:
+      - name: Running d-guard logic
+        run: |
+          echo "Scanning secrets..."
+          sleep 5
+          echo "Scanning vulnerabilities..."
+          sleep 5
+
+  integration-test:
+    name: 🧪 Integration Tests
+    needs: security-scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Booting VM
+        run: |
+          echo "Starting QEMU..."
+          sleep 8
+          echo "Running tests..."
+          sleep 7
+
+  deploy-staging:
+    name: 🚀 Deploy Staging
+    needs: integration-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploying
+        run: |
+          echo "Uploading artifacts..."
+          sleep 5
+          echo "Deployed!"

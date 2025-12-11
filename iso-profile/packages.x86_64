@@ -1,3 +1,4 @@
+# --- Base ---
 base
 linux-lts
 linux-firmware
@@ -5,14 +6,30 @@ intel-ucode
 amd-ucode
 grub
 efibootmgr
-networkmanager
-dhclient
-openssh
 sudo
 nano
 vim
 git
-arch-install-scripts
-mkinitcpio
-mkinitcpio-archiso
+networkmanager
 syslinux
+
+# --- Desktop Environment (GNOME) ---
+gnome
+gnome-extra
+gdm
+# Пакеты для Xorg/Wayland
+xorg-server
+xorg-xinit
+xorg-drivers
+mesa
+
+# --- Installer ---
+archinstall
+# Зависимости для работы с дисками
+dosfstools
+mtools
+btrfs-progs
+gptfdisk
+
+# --- Browser (для тестов) ---
+firefox

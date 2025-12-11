@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DevOS Security Report</title>
+	<style>
+		body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f9; padding: 40px; }
+		.container { max-width: 900px; margin: 0 auto; }
+		.header { background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+		.issue { background: white; margin: 15px 0; padding: 20px; border-left: 6px solid #ccc; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+		.CRITICAL { border-left-color: #ff4757; }
+		.HIGH { border-left-color: #ffa502; }
+		.MEDIUM { border-left-color: #eccc68; }
+		.LOW { border-left-color: #70a1ff; }
+		h3 { margin-top: 0; }
+		.meta { color: #666; font-size: 0.9em; font-family: monospace; background: #eee; padding: 2px 5px; border-radius: 3px; }
+		.suggestion { background: #e3f2fd; padding: 10px; border-radius: 4px; margin-top: 10px; color: #0d47a1; }
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="header">
+		<h1>🛡️ d-guard Scan Report</h1>
+		<p><strong>Generated:</strong> 11 Dec 25 22:35 MSK | <strong>Issues Found:</strong> 7</p>
+	</div>
+	
+	<div class="issue CRITICAL">
+		<h3>[CRITICAL] Trivy (Vuln): CVE-2024-41110: github.com/docker/docker (v24.0.7&#43;incompatible)</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/go.mod:1</span></p>
+		<p>Moby is an open-source project created by Docker for software containerization. A security vulnerability has been detected in certain versions of Docker Engine, which could allow an attacker to bypass authorization plugins (AuthZ) under specific circumstances. The base likelihood of this being exploited is low.
+
+Using a specially-crafted API request, an Engine API client could make the daemon forward the request or response to an authorization plugin without the body. In certain circumstances, the authorization plugin may allow a request which it would have otherwise denied if the body had been forwarded to it.
+
+A security issue was discovered In 2018, where an attacker could bypass AuthZ plugins using a specially crafted API request. This could lead to unauthorized actions, including privilege escalation. Although this issue was fixed in Docker Engine v18.09.1 in January 2019, the fix was not carried forward to later major versions, resulting in a regression. Anyone who depends on authorization plugins that introspect the request and/or response body to make access control decisions is potentially impacted.
+
+Docker EE v19.03.x and all versions of Mirantis Container Runtime are not vulnerable.
+
+docker-ce v27.1.1 containes patches to fix the vulnerability. Patches have also been merged into the master, 19.03, 20.0, 23.0, 24.0, 25.0, 26.0, and 26.1 release branches. If one is unable to upgrade immediately, avoid using AuthZ plugins and/or restrict access to the Docker API to trusted parties, following the principle of least privilege.</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Update to version 23.0.15, 26.1.5, 27.1.1, 25.0.6</div>
+		
+	</div>
+	
+	<div class="issue MEDIUM">
+		<h3>[MEDIUM] Trivy (Vuln): CVE-2024-24557: github.com/docker/docker (v24.0.7&#43;incompatible)</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/go.mod:1</span></p>
+		<p>Moby is an open-source project created by Docker to enable software containerization. The classic builder cache system is prone to cache poisoning if the image is built FROM scratch. Also, changes to some instructions (most important being HEALTHCHECK and ONBUILD) would not cause a cache miss. An attacker with the knowledge of the Dockerfile someone is using could poison their cache by making them pull a specially crafted image that would be considered as a valid cache candidate for some build steps. 23.0&#43; users are only affected if they explicitly opted out of Buildkit (DOCKER_BUILDKIT=0 environment variable) or are using the /build API endpoint. All users on versions older than 23.0 could be impacted. Image build API endpoint (/build) and ImageBuild function from github.com/docker/docker/client is also affected as it the uses classic builder by default. Patches are included in 24.0.9 and 25.0.2 releases.</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Update to version 24.0.9, 25.0.2</div>
+		
+	</div>
+	
+	<div class="issue LOW">
+		<h3>[LOW] Trivy (Vuln): CVE-2025-54410: github.com/docker/docker (v24.0.7&#43;incompatible)</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/go.mod:1</span></p>
+		<p>Moby is an open source container framework developed by Docker Inc. that is distributed as Docker Engine, Mirantis Container Runtime, and various other downstream projects/products. A firewalld vulnerability affects Moby releases before 28.0.0. When firewalld reloads, Docker fails to re-create iptables rules that isolate bridge networks, allowing any container to access all ports on any other container across different bridge networks on the same host. This breaks network segmentation between containers that should be isolated, creating significant risk in multi-tenant environments. Only containers in --internal networks remain protected.
+Workarounds include reloading firewalld and either restarting the docker daemon, re-creating bridge networks, or using rootless mode. Maintainers anticipate a fix for this issue in version 25.0.13.</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Update to version 28.0.0</div>
+		
+	</div>
+	
+	<div class="issue MEDIUM">
+		<h3>[MEDIUM] Trivy (IaC): &#39;:latest&#39; tag used</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/Dockerfile:1</span></p>
+		<p>When using a &#39;FROM&#39; statement you should use a specific tag to avoid uncontrolled behavior when the image is updated.</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Specify a tag in the &#39;FROM&#39; statement for image &#39;ubuntu&#39;</div>
+		
+	</div>
+	
+	<div class="issue HIGH">
+		<h3>[HIGH] Trivy (IaC): Image user should not be &#39;root&#39;</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/Dockerfile:1</span></p>
+		<p>Running containers with &#39;root&#39; user can lead to a container escape situation. It is a best practice to run containers as non-root users, which can be done by adding a &#39;USER&#39; statement to the Dockerfile.</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Specify at least 1 USER command in Dockerfile with non-root user as argument</div>
+		
+	</div>
+	
+	<div class="issue LOW">
+		<h3>[LOW] Trivy (IaC): No HEALTHCHECK defined</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/Dockerfile:1</span></p>
+		<p>You should add HEALTHCHECK instruction in your docker container images to perform the health check on running containers.</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Add HEALTHCHECK instruction in your Dockerfile</div>
+		
+	</div>
+	
+	<div class="issue CRITICAL">
+		<h3>[CRITICAL] Trivy (IaC): Secrets passed via `build-args` or envs or copied secret files</h3>
+		<p>📍 Location: <span class="meta">tools/d-guard/Dockerfile:1</span></p>
+		<p>Passing secrets via `build-args` or envs or copying secret files can leak them out</p>
+		
+		<div class="suggestion"><strong>💡 Fix:</strong> Possible exposure of secret env &#34;PASSWORD&#34; in ENV</div>
+		
+	</div>
+	
+</div>
+</body>
+</html>
