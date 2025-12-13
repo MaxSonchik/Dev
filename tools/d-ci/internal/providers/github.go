@@ -2,45 +2,41 @@ package providers
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
 	"github.com/devos-os/d-ci/internal/domain"
-	"github.com/shurcooL/githubv4"
 )
 
 type GitHubProvider struct {
-	token    string
-	owner    string
-	repo     string
-	client   *githubv4.Client
-	events   chan domain.PipelineEvent
-	cancel   context.CancelFunc
+	token  string
+	owner  string
+	repo   string
+	client *http.Client
+	events chan domain.PipelineEvent
+	cancel context.CancelFunc
 }
 
 func NewGitHubProvider(owner, repo, token string) (*GitHubProvider, error) {
-	if token == "" { return nil, fmt.Errorf("missing GitHub token") }
-	
-	src := &tokenSource{AccessToken: token}
-	httpClient := &http.Client{
-		Transport: &oauth2Transport{
-			source: src,
-			base:   http.DefaultTransport,
-		},
+	if token == "" {
+		return nil, fmt.Errorf("missing GitHub token")
 	}
-	client := githubv4.NewClient(httpClient)
-	
+
 	return &GitHubProvider{
-		token:  token,
-		owner:  owner,
-		repo:   repo,
-		client: client,
+		token: token,
+		owner: owner,
+		repo:  repo,
+		client: &http.Client{
+			Timeout: 10 * time.Second,
+		},
 		events: make(chan domain.PipelineEvent),
 	}, nil
 }
 
-func (g *GitHubProvider) Name() string { return "GitHub" }
+func (g *GitHubProvider) Name() string { return "GitHub REST" }
 
 func (g *GitHubProvider) Subscribe() <-chan domain.PipelineEvent {
 	ctx, cancel := context.WithCancel(context.Background())
@@ -48,11 +44,13 @@ func (g *GitHubProvider) Subscribe() <-chan domain.PipelineEvent {
 
 	go func() {
 		defer close(g.events)
-		g.poll(ctx) // Первый запуск сразу
-		
-		ticker := time.NewTicker(30 * time.Second) // Опрос API каждые 30 сек
+		log.Println("⚡ Subscribed via REST API. Starting poll loop...")
+
+		g.poll(ctx) // Первый опрос
+
+		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
-		
+
 		for {
 			select {
 			case <-ticker.C:
@@ -65,107 +63,143 @@ func (g *GitHubProvider) Subscribe() <-chan domain.PipelineEvent {
 	return g.events
 }
 
+// --- Структуры для JSON ответов GitHub REST API ---
+
+type ghRunsResponse struct {
+	WorkflowRuns []ghRun `json:"workflow_runs"`
+}
+
+type ghRun struct {
+	ID         int64     `json:"id"`
+	Name       string    `json:"name"`
+	Status     string    `json:"status"`     // queued, in_progress, completed
+	Conclusion string    `json:"conclusion"` // success, failure, neutral, cancelled, skipped
+	HeadBranch string    `json:"head_branch"`
+	HeadCommit ghCommit  `json:"head_commit"`
+	CreatedAt  time.Time `json:"created_at"`
+	HTMLURL    string    `json:"html_url"`
+}
+
+type ghCommit struct {
+	ID      string `json:"id"`
+	Message string `json:"message"`
+	Author  struct {
+		Name string `json:"name"`
+	} `json:"author"`
+}
+
+type ghJobsResponse struct {
+	Jobs []ghJob `json:"jobs"`
+}
+
+type ghJob struct {
+	ID         int64  `json:"id"`
+	Name       string `json:"name"`
+	Status     string `json:"status"`
+	Conclusion string `json:"conclusion"`
+}
+
+// --- Логика опроса ---
+
 func (g *GitHubProvider) poll(ctx context.Context) {
-	// Упрощенный запрос с использованием String вместо Enum для стабильности
-	var query struct {
-		Repository struct {
-			NameWithOwner githubv4.String
-			WorkflowRuns struct {
-				Nodes []struct {
-					ID     githubv4.String
-					RunID  githubv4.Int
-					Status githubv4.String // Используем String!
-					HeadRef struct { Name githubv4.String }
-					HeadCommit struct {
-						Message githubv4.String
-						Author struct { User struct { Login githubv4.String } }
-						CommittedDate githubv4.DateTime
-					}
-					Jobs struct {
-						Nodes []struct {
-							Name   githubv4.String
-							ID     githubv4.String
-							Status githubv4.String // Используем String!
-							Conclusion githubv4.String
-						}
-					} `graphql:"jobs(first:20)"`
-				}
-			} `graphql:"workflowRuns(first: 10, branch: \"main\", orderBy: {field: CREATED_AT, direction: DESC})"`
-		} `graphql:"repository(owner: $owner, name: $name)"`
+	log.Println("📡 Polling GitHub REST API...")
+
+	// 1. Получаем список Workflow Runs
+	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/actions/runs?per_page=5", g.owner, g.repo)
+	req, _ := http.NewRequestWithContext(ctx, "GET", url, nil)
+	req.Header.Set("Authorization", "Bearer "+g.token)
+	req.Header.Set("Accept", "application/vnd.github.v3+json")
+
+	resp, err := g.client.Do(req)
+	if err != nil {
+		log.Printf("❌ HTTP Error: %v", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		log.Printf("❌ API Error: Status %d", resp.StatusCode)
+		return
 	}
 
-	vars := map[string]interface{}{
-		"owner": githubv4.String(g.owner),
-		"name":  githubv4.String(g.repo),
+	var runsResp ghRunsResponse
+	if err := json.NewDecoder(resp.Body).Decode(&runsResp); err != nil {
+		log.Printf("❌ JSON Error: %v", err)
+		return
 	}
 
-	if err := g.client.Query(ctx, &query, vars); err != nil {
-		return // Silently ignore errors in loop or log them
-	}
+	log.Printf("✅ Received %d workflows", len(runsResp.WorkflowRuns))
 
-	for _, run := range query.Repository.WorkflowRuns.Nodes {
+	// 2. Обрабатываем каждый Run
+	for _, run := range runsResp.WorkflowRuns {
 		p := domain.Pipeline{
-			ID:        string(run.ID),
-			Project:   string(query.Repository.NameWithOwner),
-			Branch:    string(run.HeadRef.Name),
-			CommitMsg: string(run.HeadCommit.Message),
-			Author:    string(run.HeadCommit.Author.User.Login),
-			StartedAt: run.HeadCommit.CommittedDate.Time,
+			ID:        fmt.Sprintf("%d", run.ID),
+			Project:   fmt.Sprintf("%s/%s", g.owner, g.repo),
+			Branch:    run.HeadBranch,
+			CommitMsg: run.HeadCommit.Message,
+			Author:    run.HeadCommit.Author.Name,
+			StartedAt: run.CreatedAt,
+			Url:       run.HTMLURL,
 		}
 
-		// Mapping Pipeline Status
-		status := string(run.Status)
-		if status == "COMPLETED" {
-			p.Status = domain.StatusSuccess // Условно, реальный статус в Conclusion
-		} else if status == "IN_PROGRESS" {
-			p.Status = domain.StatusRunning
-		} else {
-			p.Status = domain.StatusPending
+		// Статус пайплайна
+		p.Status = mapStatus(run.Status, run.Conclusion)
+
+		// 3. Получаем Jobs для каждого Run (отдельный запрос)
+		// Примечание: В реальном высоконагруженном приложении это нужно кешировать или ограничивать
+		jobs, err := g.getJobs(ctx, run.ID)
+		if err == nil {
+			p.Jobs = jobs
 		}
 
-		// Mapping Jobs
-		for _, j := range run.Jobs.Nodes {
-			job := domain.Job{
-				ID:   string(j.ID),
-				Name: string(j.Name),
-			}
-			
-			jStatus := string(j.Status)
-			jConc := string(j.Conclusion)
-
-			if jStatus == "IN_PROGRESS" || jStatus == "QUEUED" {
-				job.Status = domain.StatusRunning
-			} else if jStatus == "COMPLETED" {
-				if jConc == "SUCCESS" {
-					job.Status = domain.StatusSuccess
-				} else if jConc == "FAILURE" {
-					job.Status = domain.StatusFailed
-					p.Status = domain.StatusFailed // Если хоть одна джоба упала
-				} else {
-					job.Status = domain.StatusSkipped
-				}
-			} else {
-				job.Status = domain.StatusPending
-			}
-			p.Jobs = append(p.Jobs, job)
-		}
-		
 		g.events <- domain.PipelineEvent{Type: "UPDATE", Pipeline: p}
 	}
 }
 
+func (g *GitHubProvider) getJobs(ctx context.Context, runID int64) ([]domain.Job, error) {
+	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/actions/runs/%d/jobs", g.owner, g.repo, runID)
+	req, _ := http.NewRequestWithContext(ctx, "GET", url, nil)
+	req.Header.Set("Authorization", "Bearer "+g.token)
+
+	resp, err := g.client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	var jobsResp ghJobsResponse
+	if err := json.NewDecoder(resp.Body).Decode(&jobsResp); err != nil {
+		return nil, err
+	}
+
+	var domainJobs []domain.Job
+	for _, j := range jobsResp.Jobs {
+		domainJobs = append(domainJobs, domain.Job{
+			ID:     fmt.Sprintf("%d", j.ID),
+			Name:   j.Name,
+			Status: mapStatus(j.Status, j.Conclusion),
+		})
+	}
+	return domainJobs, nil
+}
+
+func mapStatus(status, conclusion string) domain.Status {
+	if status == "queued" || status == "in_progress" || status == "waiting" {
+		return domain.StatusRunning
+	}
+	if status == "completed" {
+		switch conclusion {
+		case "success":
+			return domain.StatusSuccess
+		case "failure", "timed_out", "action_required":
+			return domain.StatusFailed
+		case "cancelled", "skipped":
+			return domain.StatusSkipped
+		default:
+			return domain.StatusFailed
+		}
+	}
+	return domain.StatusPending
+}
+
 func (g *GitHubProvider) Trigger(id string) error { return nil }
-
-// --- Auth helpers ---
-type tokenSource struct { AccessToken string }
-func (t *tokenSource) Token() (*http.Cookie, error) { return nil, nil } // Stub
-
-type oauth2Transport struct {
-	source *tokenSource
-	base   http.RoundTripper
-}
-
-func (t *oauth2Transport) RoundTrip(req *http.Request) (*http.Response, error) {
-	req.Header.Set("Authorization", "Bearer "+t.source.AccessToken)
-	return t.base.RoundTrip(req)
-}

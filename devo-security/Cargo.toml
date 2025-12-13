@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "d-ransom",
+    "d-paladin"
+, "vuln-app"]
+resolver = "2"

@@ -1,0 +1,158 @@
+2025-12-12 14:15:55,431 [INFO] bbot.scanner scanner.py:1187 Setup soft-failed for github_org: Error with API ({
+  "message": "Bad credentials",
+  "documentation_url": "https://docs.github.com/rest",
+  "status": "401"
+})
+2025-12-12 14:15:55,431 [SUCCESS] bbot.scanner logger.py:151 Setup succeeded for 46/70 modules.
+2025-12-12 14:15:55,440 [HUGESUCCESS] bbot.scanner logger.py:151 Starting scan sadistic_philip
+2025-12-12 14:15:58,626 [INFO] bbot.modules.anubisdb base.py:1533 Error parsing results for query "google.com" (status code 301)
+2025-12-12 14:15:58,641 [INFO] bbot.modules.leakix base.py:1533 Error parsing results for query "google.com" (status code 401)
+2025-12-12 14:15:59,762 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (CNAME): *.clients.google.com
+2025-12-12 14:15:59,764 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.clients.google.com
+2025-12-12 14:16:00,042 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.afd.ghs.google.com
+2025-12-12 14:16:00,066 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.afd.ghs.google.com
+2025-12-12 14:16:00,110 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.sites.google.com
+2025-12-12 14:16:00,110 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (CNAME): *.sites.google.com
+2025-12-12 14:16:00,110 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.sites.google.com
+2025-12-12 14:16:00,220 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (CNAME): *.docs.google.com
+2025-12-12 14:16:00,220 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.docs.google.com
+2025-12-12 14:16:00,242 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.docs.google.com
+2025-12-12 14:16:00,267 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.spreadsheets.google.com
+2025-12-12 14:16:00,267 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (CNAME): *.spreadsheets.google.com
+2025-12-12 14:16:00,287 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.spreadsheets.google.com
+2025-12-12 14:16:00,616 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.feedproxy.ghs.google.com
+2025-12-12 14:16:00,616 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.feedproxy.ghs.google.com
+2025-12-12 14:16:01,505 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (CNAME): *.drive.google.com
+2025-12-12 14:16:01,526 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.drive.google.com
+2025-12-12 14:16:01,536 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.drive.google.com
+2025-12-12 14:16:02,329 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (AAAA): *.sandbox.google.com
+2025-12-12 14:16:02,334 [INFO] bbot.core.dnsengine engine.py:596 Encountered domain with wildcard DNS (A): *.sandbox.google.com
+2025-12-12 14:16:03,245 [HUGEWARNING] bbot.scanner logger.py:151 Aborting scan
+2025-12-12 14:16:04,307 [INFO] bbot.modules.affiliates base.py:1533 +-------------+---------+---------+
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 | Affiliate   | Score   | Count   |
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 +=============+=========+=========+
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 | pki.goog    | 3.00    | 3       |
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 +-------------+---------+---------+
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 | 1e100.net   | 1.00    | 1       |
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 +-------------+---------+---------+
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 | 10.5        | 1.00    | 1       |
+2025-12-12 14:16:04,308 [INFO] bbot.modules.affiliates base.py:1533 +-------------+---------+---------+
+2025-12-12 14:16:04,312 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | ASN     | Subnet              | Host Count   | Name   | Description   | Country   |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +=========+=====================+==============+========+===============+===========+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 2001:4860::/32      | 7            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 2a00:1450:400c::/48 | 4            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 216.239.32.0/24     | 2            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 216.239.38.0/24     | 2            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 64.233.184.0/24     | 2            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 142.251.168.0/24    | 2            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 216.239.36.0/24     | 2            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 216.239.34.0/24     | 2            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 2a00:1450:4001::/48 | 1            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 142.250.185.0/24    | 1            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 209.85.128.0/17     | 1            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 74.125.0.0/20       | 1            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 | AS15169 | 74.125.206.0/24     | 1            | GOOGLE | Google LLC    | US        |
+2025-12-12 14:16:04,313 [INFO] bbot.modules.asn base.py:1533 +---------+---------------------+--------------+--------+---------------+-----------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | Module           | Produced                          | Consumed                                 |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +==================+===================================+==========================================+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | subdomaincenter  | 92 (92 DNS_NAME)                  | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | emailformat      | 50 (50 EMAIL_ADDRESS)             | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | PTR              | 13 (13 DNS_NAME)                  | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | digitorus        | 7 (7 DNS_NAME)                    | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | skymem           | 5 (5 EMAIL_ADDRESS)               | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | shodan_idb       | 4 (3 OPEN_TCP_PORT, 1 TECHNOLOGY) | 8 (8 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | NS               | 4 (4 DNS_NAME)                    | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | A                | 4 (4 IP_ADDRESS)                  | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | TXT              | 3 (3 DNS_NAME)                    | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | AAAA             | 3 (3 IP_ADDRESS)                  | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | speculate        | 2 (1 DNS_NAME, 1 ORG_STUB)        | 460 (116 DNS_NAME, 319                   |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 |                  |                                   | DNS_NAME_UNRESOLVED, 25 IP_ADDRESS)      |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | dnstlsrpt        | 1 (1 EMAIL_ADDRESS)               | 14 (14 DNS_NAME)                         |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | urlscan          | 1 (1 DNS_NAME)                    | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | SOA              | 1 (1 DNS_NAME)                    | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | MX               | 1 (1 DNS_NAME)                    | 0                                        |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | dnsresolve       | 0                                 | 859 (474 DNS_NAME, 57 EMAIL_ADDRESS, 268 |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 |                  |                                   | IP_ADDRESS, 59 OPEN_TCP_PORT, 1          |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 |                  |                                   | TECHNOLOGY)                              |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | cloudcheck       | 0                                 | 593 (126 DNS_NAME, 319                   |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 |                  |                                   | DNS_NAME_UNRESOLVED, 57 EMAIL_ADDRESS,   |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 |                  |                                   | 31 IP_ADDRESS, 59 OPEN_TCP_PORT, 1       |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 |                  |                                   | TECHNOLOGY)                              |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | azure_realm      | 0                                 | 114 (114 DNS_NAME)                       |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 | azure_tenant     | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,324 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | dnsbimi          | 0                                 | 7 (7 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | dnscaa           | 0                                 | 39 (39 DNS_NAME)                         |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | viewdns          | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | dockerhub        | 0                                 | 1 (1 ORG_STUB)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | google_playstore | 0                                 | 1 (1 ORG_STUB)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | portfilter       | 0                                 | 15 (15 OPEN_TCP_PORT)                    |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | httpx            | 0                                 | 12 (12 OPEN_TCP_PORT)                    |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | anubisdb         | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | certspotter      | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | crt              | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | sitedossier      | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | crt_db           | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | dnsdumpster      | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | hackertarget     | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | leakix           | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | myssl            | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | otx              | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | pgp              | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | rapiddns         | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | wayback          | 0                                 | 1 (1 DNS_NAME)                           |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 | ipneighbor       | 0                                 | 21 (21 IP_ADDRESS)                       |
+2025-12-12 14:16:04,325 [INFO] bbot.modules.aggregate base.py:1533 +------------------+-----------------------------------+------------------------------------------+
+2025-12-12 14:16:04,326 [INFO] bbot.modules.output.json base.py:1533 Saved JSON output to /home/maxosss/prjcts/devos/tools/d-recon/-/sadistic_philip/output.json

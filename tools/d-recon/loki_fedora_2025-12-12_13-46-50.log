@@ -1,0 +1,5 @@
+20251212T10:46:50Z fedora LOKI: Notice: MODULE: Init MESSAGE: Starting Loki Scan VERSION: 0.51.1 SYSTEM: fedora TIME: 20251212T10:46:50Z PLATFORM:     PROC:  ARCH: 64bit ELF
+20251212T10:46:50Z fedora LOKI: Notice: MODULE: Init MESSAGE: The 'signature-base' subdirectory doesn't exist or is empty. Trying to retrieve the signature database automatically.
+20251212T10:46:50Z fedora LOKI: Info: MODULE: Update MESSAGE: Starting separate updater process ...
+20251212T10:46:50Z fedora LOKI: Error: MODULE: Init MESSAGE: Error reading files from IOC folder: /tmp/Loki/signature-base/iocs/
+20251212T10:46:50Z fedora LOKI: Error: MODULE: Init MESSAGE: Please make sure that you cloned the repo or downloaded the sub repository: See https://github.com/Neo23x0/Loki/issues/51

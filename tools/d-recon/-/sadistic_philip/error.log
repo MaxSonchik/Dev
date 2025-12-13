@@ -1,0 +1,558 @@
+2025-12-12 14:15:55,431 [TRACE] bbot.cli logger.py:151 Command: /home/maxosss/.local/bin/bbot -t google.com -f subdomain-enum --flags passive -em jadx extractous trufflehog social -y --output-modules json -o -
+2025-12-12 14:15:55,440 [TRACE] bbot.scanner logger.py:151 Ran BBOT v2.7.2 at 2025-12-12 14:15:55.431862, command: /home/maxosss/.local/bin/bbot -t google.com -f subdomain-enum --flags passive -em jadx extractous trufflehog social -y --output-modules json -o -
+2025-12-12 14:15:55,440 [TRACE] bbot.scanner logger.py:151 Target: {'seeds': ['google.com'], 'whitelist': ['google.com'], 'blacklist': [], 'strict_scope': False, 'hash': 'd98d79461c45de8e25001761b100488a9cecfe6d', 'seed_hash': 'baea954b95731c68ae6e45bd1e252eb4560cdc45', 'whitelist_hash': 'baea954b95731c68ae6e45bd1e252eb4560cdc45', 'blacklist_hash': 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'scope_hash': '83ffcf2b6d6e0cde882d5b34c26413d6397f3b87'}
+2025-12-12 14:15:55,440 [TRACE] bbot.scanner logger.py:151 Preset: {'description': 'sadistic_philip', 'exclude_modules': ['extractous', 'jadx', 'social', 'trufflehog'], 'flags': ['passive'], 'output_modules': ['json']}
+2025-12-12 14:15:57,025 [TRACE] bbot.modules.asn logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/report/asn.py", line 245, in get_url
+    j = r.json()
+        ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'json'
+
+2025-12-12 14:15:57,512 [TRACE] bbot.modules.leakix logger.py:151 API response to https://leakix.net/api/subdomains/google.com failed with status code 401: "Incorrect API Key"
+2025-12-12 14:15:57,629 [TRACE] bbot.modules.otx logger.py:151 API response to https://otx.alienvault.com/api/v1/indicators/domain/google.com/passive_dns failed with status code 429: {"detail": "Anonymous access to this endpoint is limited. Please authenticate."}
+2025-12-12 14:15:57,755 [TRACE] bbot.modules.anubisdb logger.py:151 API response to https://jldc.me/anubis/subdomains/google.com failed with status code 301: 
+2025-12-12 14:15:58,104 [TRACE] bbot.modules.leakix logger.py:151 API response to https://leakix.net/api/subdomains/google.com failed with status code 401: "Incorrect API Key"
+2025-12-12 14:15:58,490 [TRACE] bbot.modules.anubisdb logger.py:151 API response to https://jldc.me/anubis/subdomains/google.com failed with status code 301: 
+2025-12-12 14:15:58,626 [TRACE] bbot.modules.anubisdb logger.py:151 API response to https://jldc.me/anubis/subdomains/google.com failed with status code 301: 
+2025-12-12 14:15:58,627 [TRACE] bbot.modules.anubisdb logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/modules/templates/subdomain_enum.py", line 126, in query
+    results = list(await parse_fn(response, query))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/anubisdb.py", line 43, in parse_results
+    json = r.json()
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 832, in json
+    return jsonlib.loads(self.content, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2025-12-12 14:15:58,627 [TRACE] bbot.modules.anubisdb logger.py:151 ''
+2025-12-12 14:15:58,641 [TRACE] bbot.modules.leakix logger.py:151 API response to https://leakix.net/api/subdomains/google.com failed with status code 401: "Incorrect API Key"
+2025-12-12 14:15:58,642 [TRACE] bbot.modules.leakix logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/modules/templates/subdomain_enum.py", line 126, in query
+    results = list(await parse_fn(response, query))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/leakix.py", line 43, in parse_results
+    subdomain = entry.get("subdomain", "")
+                ^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+2025-12-12 14:15:58,642 [TRACE] bbot.modules.leakix logger.py:151 '"Incorrect API Key"'
+2025-12-12 14:16:03,247 [TRACE] bbot.scanner logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/scanner/scanner.py", line 408, in async_start
+    await asyncio.sleep(0.1)
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 702, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,247 [TRACE] bbot.scanner logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/scanner/scanner.py", line 408, in async_start
+    await asyncio.sleep(0.1)
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 702, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,250 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 446, in run_and_yield
+    async for _ in command_fn(*args, **kwargs):
+        self.engine_debug(f"{self.name}: sending iteration for {fn_str}: {_}")
+        await self.send_socket_multipart(client_id, _)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 354, in resolve_raw_batch
+    async for (args, kwargs, _), (answers, errors) in self.task_pool(
+    ...<4 lines>...
+        yield ((query, rdtype), (answers, errors))
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 600, in task_pool
+    finished = await self.finished_tasks(tasks, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 639, in finished_tasks
+    done, _ = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED, timeout=timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 432, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 521, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,250 [TRACE] bbot.core.dnsengine logger.py:151 Caught exception in resolve_raw(1ajodt2w.feedproxy.ghs.google.com, {}):
+2025-12-12 14:16:03,251 [TRACE] bbot.core.httpengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 417, in run_and_return
+    result = await command_fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/web/engine.py", line 87, in request
+    response = await client.request(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pool_request.request
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_backends/anyio.py", line 115, in connect_tcp
+    stream: anyio.abc.ByteStream = await anyio.connect_tcp(
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/_core/_sockets.py", line 235, in connect_tcp
+    async with create_task_group() as tg:
+               ~~~~~~~~~~~~~~~~~^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 787, in __aexit__
+    raise exc_val
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 755, in __aexit__
+    await self._on_completed_fut
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,252 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 161, in resolve_raw
+    return await self._resolve_hostname(query, rdtype=rdtype, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 226, in _resolve_hostname
+    results = await self._catch(self.resolver.resolve, query, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 381, in _catch
+    return await callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncresolver.py", line 91, in resolve
+    response = await nameserver.async_query(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/nameserver.py", line 147, in async_query
+    response = await dns.asyncquery.udp(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 223, in udp
+    (r, received_time, _) = await receive_udp(
+                            ^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 143, in receive_udp
+    (wire, from_address) = await sock.recvfrom(65535, _timeout(expiration))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 82, in recvfrom
+    await _maybe_wait_for(done, timeout)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 58, in _maybe_wait_for
+    return await asyncio.wait_for(awaitable, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,252 [TRACE] bbot.core.dnsengine logger.py:151 Caught exception in resolve_raw(1ajodt2w.feedproxy.ghs.google.com, {}):
+2025-12-12 14:16:03,252 [TRACE] bbot.core.httpengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 446, in run_and_yield
+    async for _ in command_fn(*args, **kwargs):
+        self.engine_debug(f"{self.name}: sending iteration for {fn_str}: {_}")
+        await self.send_socket_multipart(client_id, _)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/web/engine.py", line 99, in request_batch
+    async for (args, _, _), response in self.task_pool(
+    ...<2 lines>...
+        yield args[0], response
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 600, in task_pool
+    finished = await self.finished_tasks(tasks, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 639, in finished_tasks
+    done, _ = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED, timeout=timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 432, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 521, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,253 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 161, in resolve_raw
+    return await self._resolve_hostname(query, rdtype=rdtype, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 226, in _resolve_hostname
+    results = await self._catch(self.resolver.resolve, query, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 381, in _catch
+    return await callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncresolver.py", line 91, in resolve
+    response = await nameserver.async_query(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/nameserver.py", line 147, in async_query
+    response = await dns.asyncquery.udp(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 223, in udp
+    (r, received_time, _) = await receive_udp(
+                            ^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 143, in receive_udp
+    (wire, from_address) = await sock.recvfrom(65535, _timeout(expiration))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 82, in recvfrom
+    await _maybe_wait_for(done, timeout)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 58, in _maybe_wait_for
+    return await asyncio.wait_for(awaitable, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,256 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 446, in run_and_yield
+    async for _ in command_fn(*args, **kwargs):
+        self.engine_debug(f"{self.name}: sending iteration for {fn_str}: {_}")
+        await self.send_socket_multipart(client_id, _)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 354, in resolve_raw_batch
+    async for (args, kwargs, _), (answers, errors) in self.task_pool(
+    ...<4 lines>...
+        yield ((query, rdtype), (answers, errors))
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 600, in task_pool
+    finished = await self.finished_tasks(tasks, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 639, in finished_tasks
+    done, _ = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED, timeout=timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 432, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 521, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,256 [TRACE] bbot.core.dnsengine logger.py:151 Caught exception in resolve_raw(svx2-213.cache.google.com, {}):
+2025-12-12 14:16:03,256 [TRACE] bbot.core.httpengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 417, in run_and_return
+    result = await command_fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/web/engine.py", line 87, in request
+    response = await client.request(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        pool_request.request
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.READ_NUM_BYTES, timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1292, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib64/python3.14/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,257 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 161, in resolve_raw
+    return await self._resolve_hostname(query, rdtype=rdtype, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 226, in _resolve_hostname
+    results = await self._catch(self.resolver.resolve, query, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 381, in _catch
+    return await callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncresolver.py", line 91, in resolve
+    response = await nameserver.async_query(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/nameserver.py", line 147, in async_query
+    response = await dns.asyncquery.udp(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 223, in udp
+    (r, received_time, _) = await receive_udp(
+                            ^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 143, in receive_udp
+    (wire, from_address) = await sock.recvfrom(65535, _timeout(expiration))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 82, in recvfrom
+    await _maybe_wait_for(done, timeout)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 58, in _maybe_wait_for
+    return await asyncio.wait_for(awaitable, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,258 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 446, in run_and_yield
+    async for _ in command_fn(*args, **kwargs):
+        self.engine_debug(f"{self.name}: sending iteration for {fn_str}: {_}")
+        await self.send_socket_multipart(client_id, _)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 354, in resolve_raw_batch
+    async for (args, kwargs, _), (answers, errors) in self.task_pool(
+    ...<4 lines>...
+        yield ((query, rdtype), (answers, errors))
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 600, in task_pool
+    finished = await self.finished_tasks(tasks, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 639, in finished_tasks
+    done, _ = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED, timeout=timeout)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 432, in wait
+    return await _wait(fs, timeout, return_when, loop)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 521, in _wait
+    await waiter
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,258 [TRACE] bbot.core.dnsengine logger.py:151 Caught exception in resolve_raw(alt22320139.google.com, {}):
+2025-12-12 14:16:03,259 [TRACE] bbot.core.dnsengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 161, in resolve_raw
+    return await self._resolve_hostname(query, rdtype=rdtype, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 226, in _resolve_hostname
+    results = await self._catch(self.resolver.resolve, query, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/dns/engine.py", line 381, in _catch
+    return await callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncresolver.py", line 91, in resolve
+    response = await nameserver.async_query(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/nameserver.py", line 147, in async_query
+    response = await dns.asyncquery.udp(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 223, in udp
+    (r, received_time, _) = await receive_udp(
+                            ^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/asyncquery.py", line 143, in receive_udp
+    (wire, from_address) = await sock.recvfrom(65535, _timeout(expiration))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 82, in recvfrom
+    await _maybe_wait_for(done, timeout)
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/dns/_asyncio_backend.py", line 58, in _maybe_wait_for
+    return await asyncio.wait_for(awaitable, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/tasks.py", line 488, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,260 [TRACE] bbot.core.httpengine logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/engine.py", line 417, in run_and_return
+    result = await command_fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/core/helpers/web/engine.py", line 87, in request
+    response = await client.request(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1643, in send
+    raise exc
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 1637, in send
+    await response.aread()
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 979, in aread
+    self._content = b"".join([part async for part in self.aiter_bytes()])
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 997, in aiter_bytes
+    async for raw_bytes in self.aiter_raw():
+    ...<2 lines>...
+            yield chunk
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 1055, in aiter_raw
+    async for raw_stream_bytes in self.stream:
+    ...<2 lines>...
+            yield chunk
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_client.py", line 176, in __aiter__
+    async for chunk in self._stream:
+        yield chunk
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_transports/default.py", line 271, in __aiter__
+    async for part in self._httpcore_stream:
+        yield part
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection_pool.py", line 407, in __aiter__
+    raise exc from None
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/connection_pool.py", line 403, in __aiter__
+    async for part in self._stream:
+        yield part
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 342, in __aiter__
+    raise exc
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 334, in __aiter__
+    async for chunk in self._connection._receive_response_body(**kwargs):
+        yield chunk
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 203, in _receive_response_body
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.READ_NUM_BYTES, timeout=timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/streams/tls.py", line 244, in receive
+    data = await self._call_sslobject_method(self._ssl_object.read, max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/streams/tls.py", line 187, in _call_sslobject_method
+    data = await self.transport_stream.receive()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1292, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib64/python3.14/asyncio/locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+2025-12-12 14:16:03,273 [TRACE] bbot.modules._scan_ingress logger.py:151 Worker stopped
+2025-12-12 14:16:03,274 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,274 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,274 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,274 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,275 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,276 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,277 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,278 [TRACE] bbot.modules.httpx logger.py:151 Worker stopped
+2025-12-12 14:16:03,279 [TRACE] bbot.modules.crt_db logger.py:151 Worker stopped
+2025-12-12 14:16:03,279 [TRACE] bbot.modules.otx logger.py:151 Worker stopped
+2025-12-12 14:16:03,279 [TRACE] bbot.modules.pgp logger.py:151 Worker stopped
+2025-12-12 14:16:03,280 [TRACE] bbot.modules.rapiddns logger.py:151 Worker stopped
+2025-12-12 14:16:03,280 [TRACE] bbot.modules.shodan_idb logger.py:151 Worker stopped
+2025-12-12 14:16:03,382 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,485 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,587 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,690 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,793 [TRACE] bbot.modules.dnsresolve logger.py:151 Worker stopped
+2025-12-12 14:16:03,896 [TRACE] bbot.modules.dnsbimi logger.py:151 Worker stopped
+2025-12-12 14:16:03,999 [TRACE] bbot.modules.dnscaa logger.py:151 Worker stopped
+2025-12-12 14:16:04,100 [TRACE] bbot.modules.google_playstore logger.py:151 Worker stopped
+2025-12-12 14:16:04,203 [TRACE] bbot.modules.myssl logger.py:151 Worker stopped
+2025-12-12 14:16:04,305 [TRACE] bbot.modules.wayback logger.py:151 Worker stopped

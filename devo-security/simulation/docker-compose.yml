@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  attacker:
+    image: fedora:latest
+    container_name: attacker
+    hostname: attacker
+    # Просто спим, чтобы контейнер не падал. Настроим внутри.
+    command: sleep infinity
+    # Убрали volumes, чтобы избежать проблем с правами
+    networks:
+      - devos-net
+
+  victim-1:
+    image: fedora:latest
+    container_name: victim-1
+    hostname: victim-1
+    command: sleep infinity
+    privileged: true
+    networks:
+      - devos-net
+
+  victim-2:
+    image: fedora:latest
+    container_name: victim-2
+    hostname: victim-2
+    command: sleep infinity
+    privileged: true
+    networks:
+      - devos-net
+
+networks:
+  devos-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16

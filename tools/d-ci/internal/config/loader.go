@@ -23,6 +23,7 @@ type Config struct {
 
 // Load ищет .env файл локально или в ~/.config/devos/
 func Load() (*Config, error) {
+	_ = godotenv.Load("d-ci.env")
 	// 1. Пытаемся загрузить локальный .env
 	_ = godotenv.Load(".env")
 

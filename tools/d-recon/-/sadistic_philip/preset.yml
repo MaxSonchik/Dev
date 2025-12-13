@@ -1,0 +1,10 @@
+description: sadistic_philip
+exclude_modules:
+- extractous
+- jadx
+- social
+- trufflehog
+flags:
+- passive
+output_modules:
+- json
