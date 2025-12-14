@@ -1,5 +1,0 @@
-description: frank_viktor
-flags:
-- subdomain-enum
-output_modules:
-- json

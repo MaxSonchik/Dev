@@ -1,0 +1,87 @@
+name: Build & Release DevOS Tools
+
+on:
+  push:
+    tags:
+      - 'v*' # Запускать только при создании тега v1.0.0 и т.д.
+  workflow_dispatch: # Ручной запуск
+
+jobs:
+  build-and-release:
+    name: Build Tools
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # --- GO SETUP ---
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+      
+      # --- RUST SETUP ---
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+      
+      # --- SYSTEM DEPS (Для d-shark/pcap и d-top) ---
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpcap-dev libssl-dev pkg-config
+
+      # --- BUILD ---
+      - name: Build All Tools
+        run: |
+          mkdir -p dist
+          
+          # Go Tools
+          for tool in d-env d-guard d-ci d-recon d-top; do
+            echo "Building $tool..."
+            cd tools/$tool
+            go mod tidy
+            go build -v -o ../../dist/$tool cmd/$tool/main.go
+            cd ../..
+          done
+          
+          # Rust Tools
+          for tool in d-shark; do
+            echo "Building $tool..."
+            cd tools/$tool
+            cargo build --release
+            cp target/release/$tool ../../dist/$tool
+            cd ../..
+          done
+
+      # --- TEST (Optional) ---
+      - name: Run Tests
+        run: |
+          # Go Tests
+          cd tools/d-env && go test ./... && cd ../..
+          # Rust Tests
+          # cd tools/d-shark && cargo test && cd ../..
+
+      # --- RELEASE ---
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: dist/*
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: false
+          name: DevOS Tools ${{ github.ref_name }}
+          body: |
+            Automated release of DevOS Toolkit.
+            
+            Included tools:
+            - d-env (Analysis)
+            - d-guard (Security)
+            - d-ci (Monitoring)
+            - d-recon (Recon)
+            - d-top (Dashboard)
+            - d-shark (Traffic)

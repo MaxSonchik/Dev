@@ -1,1 +1,0 @@
-{"rustc":18003836128642703264,"features":"[]","declared_features":"[\"no-panic\"]","target":8239509073162986830,"profile":2040997289075261528,"path":2591133607402416378,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/itoa-a7b38d8ccfa095a8/dep-lib-itoa","checksum":false}}],"rustflags":[],"config":2069994364910194474,"compile_kind":0}
