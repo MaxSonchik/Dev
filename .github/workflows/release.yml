@@ -3,67 +3,42 @@ name: Build & Release DevOS Tools
 on:
   push:
     tags:
-      - 'v*' # Запускать только при создании тега v1.0.0 и т.д.
+      - 'v*' # Запуск только на теги v1.0.0, v2.0.0 и т.д.
   workflow_dispatch: # Ручной запуск
 
 jobs:
   build-and-release:
-    name: Build Tools
+    name: Build & Release
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # --- GO SETUP ---
+      # --- SETUP ---
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.21'
+          go-version: '1.25'
       
-      # --- RUST SETUP ---
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
       
-      # --- SYSTEM DEPS (Для d-shark/pcap и d-top) ---
-      - name: Install Dependencies
+      # --- DEPENDENCIES ---
+      - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libpcap-dev libssl-dev pkg-config
+          # libpcap (d-shark), libssl (d-ransom), build-essential (gcc)
+          sudo apt-get install -y libpcap-dev libssl-dev pkg-config build-essential libudev-dev
 
       # --- BUILD ---
-      - name: Build All Tools
+      - name: Build All Tools via Makefile
         run: |
-          mkdir -p dist
-          
-          # Go Tools
-          for tool in d-env d-guard d-ci d-recon d-top; do
-            echo "Building $tool..."
-            cd tools/$tool
-            go mod tidy
-            go build -v -o ../../dist/$tool cmd/$tool/main.go
-            cd ../..
-          done
-          
-          # Rust Tools
-          for tool in d-shark; do
-            echo "Building $tool..."
-            cd tools/$tool
-            cargo build --release
-            cp target/release/$tool ../../dist/$tool
-            cd ../..
-          done
-
-      # --- TEST (Optional) ---
-      - name: Run Tests
-        run: |
-          # Go Tests
-          cd tools/d-env && go test ./... && cd ../..
-          # Rust Tests
-          # cd tools/d-shark && cargo test && cd ../..
+          make all
+          ls -lh dist/
 
       # --- RELEASE ---
       - name: Create Release
@@ -74,14 +49,24 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
           prerelease: false
-          name: DevOS Tools ${{ github.ref_name }}
+          name: DevOS Toolkit ${{ github.ref_name }}
           body: |
-            Automated release of DevOS Toolkit.
+            ## 🚀 DevOS Toolkit ${{ github.ref_name }}
             
-            Included tools:
-            - d-env (Analysis)
-            - d-guard (Security)
-            - d-ci (Monitoring)
-            - d-recon (Recon)
-            - d-top (Dashboard)
-            - d-shark (Traffic)
+            Automated release containing the full suite of DevOS utilities.
+            
+            ### 📦 Included Tools:
+            
+            #### 🔍 Reconnaissance & Analysis
+            - **d-env**: Project MRI (Deep inspection of Git, Docker, K8s stacks)
+            - **d-recon**: Unified Reconnaissance Orchestrator (Nmap, Masscan, BBOT)
+            
+            #### 🛡️ Defense & Monitoring
+            - **d-guard**: Security Gateway (Secret scanning, Trivy integration)
+            - **d-ci**: CI/CD Pipeline Monitor (GitHub Actions)
+            - **d-top**: Infrastructure Control Center (System, SSH, Docker dashboard)
+            - **d-shark**: Terminal Network Analyzer (Tshark wrapper with process mapping)
+            
+            #### ⚔️ Red Team & Simulation
+            - **d-ransom**: Network propagation & encryption simulator
+            - **d-paladin**: Active defense daemon (Honeypots, Grid Defense)
