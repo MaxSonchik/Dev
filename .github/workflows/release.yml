@@ -5,6 +5,8 @@ on:
     tags:
       - 'v*' # Запуск только на теги v1.0.0, v2.0.0 и т.д.
   workflow_dispatch: # Ручной запуск
+  permissions:
+  contents: write
 
 jobs:
   build-and-release:

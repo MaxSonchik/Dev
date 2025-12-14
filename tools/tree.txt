@@ -44,6 +44,7 @@
 │   ├── cmd
 │   │   └── d-env
 │   │       └── main.go
+│   ├── d-env
 │   ├── go.mod
 │   ├── go.sum
 │   └── internal
@@ -62,6 +63,7 @@
 │       │       └── infra.go
 │       └── ui
 │           └── model.go
+├── d-env.txt
 ├── d-guard
 │   ├── cmd
 │   │   └── d-guard
@@ -149,9 +151,11 @@
 │       ├── redteam
 │       │   └── stealth.go
 │       └── views
-│           └── infra.go
+│           ├── infra.go
+│           └── redteam.go
+├── d-top.txt
 ├── go.work
 ├── go.work.sum
 └── tree.txt
 
-61 directories, 94 files
+61 directories, 98 files
