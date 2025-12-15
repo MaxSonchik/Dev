@@ -1,0 +1,108 @@
+2025-12-14 23:05:16,462 [TRACE] bbot.scanner logger.py:151 Ran BBOT v2.7.2 at 2025-12-14 23:05:16.443431, command: /home/maxosss/.local/bin/bbot -t https://stankin.ru/ -f subdomain-enum --flags passive -em jadx extractous trufflehog social -y --output-modules json -o -
+2025-12-14 23:05:16,462 [TRACE] bbot.scanner logger.py:151 Target: {'seeds': ['https://stankin.ru/'], 'whitelist': ['stankin.ru'], 'blacklist': [], 'strict_scope': False, 'hash': 'e46ee8938162dd28e3cf2730b229afceb7adceb1', 'seed_hash': 'a0d1488acdbee994c365d70bd7397577523d7129', 'whitelist_hash': 'aaf5ebee1ee32563e98a28a0307859a0317f6a80', 'blacklist_hash': 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'scope_hash': '97adf3fc065beb94e1403f9274b93d2e3e6c8442'}
+2025-12-14 23:05:16,462 [TRACE] bbot.scanner logger.py:151 Preset: {'description': 'strenuous_ethan', 'exclude_modules': ['extractous', 'jadx', 'social', 'trufflehog'], 'flags': ['passive'], 'output_modules': ['json']}
+2025-12-14 23:05:17,218 [TRACE] bbot.modules.asn logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/report/asn.py", line 245, in get_url
+    j = r.json()
+        ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'json'
+
+2025-12-14 23:05:17,292 [TRACE] bbot.modules.leakix logger.py:151 API response to https://leakix.net/api/subdomains/stankin.ru failed with status code 505: 
+<h3>The requested site is currently unavailable</h3>
+
+2025-12-14 23:05:17,300 [TRACE] bbot.modules.anubisdb logger.py:151 API response to https://jldc.me/anubis/subdomains/stankin.ru failed with status code 301: 
+2025-12-14 23:05:17,381 [TRACE] bbot.modules.otx logger.py:151 API response to https://otx.alienvault.com/api/v1/indicators/domain/stankin.ru/passive_dns failed with status code 429: {"detail": "Anonymous access to this endpoint is limited. Please authenticate."}
+2025-12-14 23:05:17,462 [TRACE] bbot.modules.anubisdb logger.py:151 API response to https://jldc.me/anubis/subdomains/stankin.ru failed with status code 301: 
+2025-12-14 23:05:17,468 [TRACE] bbot.modules.leakix logger.py:151 API response to https://leakix.net/api/subdomains/stankin.ru failed with status code 505: 
+<h3>The requested site is currently unavailable</h3>
+
+2025-12-14 23:05:17,612 [TRACE] bbot.modules.anubisdb logger.py:151 API response to https://jldc.me/anubis/subdomains/stankin.ru failed with status code 301: 
+2025-12-14 23:05:17,614 [TRACE] bbot.modules.anubisdb logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/modules/templates/subdomain_enum.py", line 126, in query
+    results = list(await parse_fn(response, query))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/anubisdb.py", line 43, in parse_results
+    json = r.json()
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 832, in json
+    return jsonlib.loads(self.content, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2025-12-14 23:05:17,614 [TRACE] bbot.modules.anubisdb logger.py:151 ''
+2025-12-14 23:05:17,648 [TRACE] bbot.modules.leakix logger.py:151 API response to https://leakix.net/api/subdomains/stankin.ru failed with status code 505: 
+<h3>The requested site is currently unavailable</h3>
+
+2025-12-14 23:05:17,649 [TRACE] bbot.modules.leakix logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/modules/templates/subdomain_enum.py", line 126, in query
+    results = list(await parse_fn(response, query))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/leakix.py", line 40, in parse_results
+    json = r.json()
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 832, in json
+    return jsonlib.loads(self.content, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)
+
+2025-12-14 23:05:17,649 [TRACE] bbot.modules.leakix logger.py:151 '\n<h3>The requested site is currently unavailable</h3>\n'
+2025-12-14 23:05:30,387 [TRACE] bbot.modules.crt logger.py:151 API response to https://crt.sh?q=%25.stankin.ru&output=json failed with status code 503: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><TITLE>crt.sh | ERROR!</TITLE><LINK href="//fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,400i,700,700i" rel="stylesheet"><STYLE type="text/css">body{color:#888888;font:12pt Roboto,sans-serif;padding-top:10px;text-align:center} span{border-radius:10px} span.title{background-color:#00B373;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} span.whiteongrey{background-color:#D9D9D6;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} .copyright{font:8pt Roboto,sans-serif;color:#00B373}</STYLE></HEAD><BODY><A style="text-decoration:none" href="/"><SPAN class="title">crt.sh</SPAN></A>&nbsp; <SPAN class="whiteongrey">Certificate Search</SPAN><BR><BR><BR><BR>Sorry, something went wrong... :-(<BR><BR>Your request was terminated by the crt.sh database server after <B>13</B> seconds with the following messages:<BR><BR><TEXTAREA readonly rows="8" cols="100">FATAL:  terminating connection due to conflict with recovery
+DETAIL:  User query might have needed to see row versions that must be removed.
+CONTEXT:  PL/pgSQL function web_apis(text,text[],text[]) line 4746 at FOR over EXECUTE statement
+ERROR:  server conn crashed?
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+</TEXTAREA><BR><BR>Unfortunately, searches that would produce many results may never succeed. For other requests, please try again later.<BR><BR><BR><P class="copyright">&copy; Sectigo Limited 2015-2025. All rights reserved.</P><DIV><A href="https://sectigo.com/"><IMG src="/sectigo_s.png"></A>&nbsp;<A href="https://github.com/crtsh"><IMG src="/GitHub-Mark-32px.png"></A></DIV></BODY></HTML>
+2025-12-14 23:05:41,449 [TRACE] bbot.modules.crt logger.py:151 API response to https://crt.sh?q=%25.stankin.ru&output=json failed with status code 503: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><TITLE>crt.sh | ERROR!</TITLE><LINK href="//fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,400i,700,700i" rel="stylesheet"><STYLE type="text/css">body{color:#888888;font:12pt Roboto,sans-serif;padding-top:10px;text-align:center} span{border-radius:10px} span.title{background-color:#00B373;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} span.whiteongrey{background-color:#D9D9D6;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} .copyright{font:8pt Roboto,sans-serif;color:#00B373}</STYLE></HEAD><BODY><A style="text-decoration:none" href="/"><SPAN class="title">crt.sh</SPAN></A>&nbsp; <SPAN class="whiteongrey">Certificate Search</SPAN><BR><BR><BR><BR>Sorry, something went wrong... :-(<BR><BR>Your request was terminated by the crt.sh database server after <B>11</B> seconds with the following messages:<BR><BR><TEXTAREA readonly rows="8" cols="100">FATAL:  terminating connection due to conflict with recovery
+DETAIL:  User query might have needed to see row versions that must be removed.
+CONTEXT:  PL/pgSQL function web_apis(text,text[],text[]) line 4746 at FOR over EXECUTE statement
+ERROR:  server conn crashed?
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+</TEXTAREA><BR><BR>Unfortunately, searches that would produce many results may never succeed. For other requests, please try again later.<BR><BR><BR><P class="copyright">&copy; Sectigo Limited 2015-2025. All rights reserved.</P><DIV><A href="https://sectigo.com/"><IMG src="/sectigo_s.png"></A>&nbsp;<A href="https://github.com/crtsh"><IMG src="/GitHub-Mark-32px.png"></A></DIV></BODY></HTML>
+2025-12-14 23:05:47,631 [TRACE] bbot.modules.otx logger.py:151 API response to https://otx.alienvault.com/api/v1/indicators/domain/stankin.ru/passive_dns failed with status code 429: {"detail": "Anonymous access to this endpoint is limited. Please authenticate."}
+2025-12-14 23:05:55,439 [TRACE] bbot.modules.crt logger.py:151 API response to https://crt.sh?q=%25.stankin.ru&output=json failed with status code 503: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><TITLE>crt.sh | ERROR!</TITLE><LINK href="//fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,400i,700,700i" rel="stylesheet"><STYLE type="text/css">body{color:#888888;font:12pt Roboto,sans-serif;padding-top:10px;text-align:center} span{border-radius:10px} span.title{background-color:#00B373;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} span.whiteongrey{background-color:#D9D9D6;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} .copyright{font:8pt Roboto,sans-serif;color:#00B373}</STYLE></HEAD><BODY><A style="text-decoration:none" href="/"><SPAN class="title">crt.sh</SPAN></A>&nbsp; <SPAN class="whiteongrey">Certificate Search</SPAN><BR><BR><BR><BR>Sorry, something went wrong... :-(<BR><BR>Your request was terminated by the crt.sh database server after <B>14</B> seconds with the following messages:<BR><BR><TEXTAREA readonly rows="8" cols="100">FATAL:  terminating connection due to conflict with recovery
+DETAIL:  User query might have needed to see row versions that must be removed.
+CONTEXT:  PL/pgSQL function web_apis(text,text[],text[]) line 4746 at FOR over EXECUTE statement
+ERROR:  server conn crashed?
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+</TEXTAREA><BR><BR>Unfortunately, searches that would produce many results may never succeed. For other requests, please try again later.<BR><BR><BR><P class="copyright">&copy; Sectigo Limited 2015-2025. All rights reserved.</P><DIV><A href="https://sectigo.com/"><IMG src="/sectigo_s.png"></A>&nbsp;<A href="https://github.com/crtsh"><IMG src="/GitHub-Mark-32px.png"></A></DIV></BODY></HTML>
+2025-12-14 23:05:55,440 [TRACE] bbot.modules.crt logger.py:151 Traceback (most recent call last):
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/bbot/modules/templates/subdomain_enum.py", line 126, in query
+    results = list(await parse_fn(response, query))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib/python3.14/site-packages/bbot/modules/crt.py", line 28, in parse_results
+    j = r.json()
+  File "/home/maxosss/.local/share/pipx/venvs/bbot/lib64/python3.14/site-packages/httpx/_models.py", line 832, in json
+    return jsonlib.loads(self.content, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.14/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+2025-12-14 23:05:55,440 [TRACE] bbot.modules.crt logger.py:151 '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><HTML><HEAD><TITLE>crt.sh | ERROR!</TITLE><LINK href="//fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,400i,700,700i" rel="stylesheet"><STYLE type="text/css">body{color:#888888;font:12pt Roboto,sans-serif;padding-top:10px;text-align:center} span{border-radius:10px} span.title{background-color:#00B373;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} span.whiteongrey{background-color:#D9D9D6;color:#FFFFFF;font:bold 18pt Roboto,sans-serif;padding:0px 5px} .copyright{font:8pt Roboto,sans-serif;color:#00B373}</STYLE></HEAD><BODY><A style="text-decoration:none" href="/"><SPAN class="title">crt.sh</SPAN></A>&nbsp; <SPAN class="whiteongrey">Certificate Search</SPAN><BR><BR><BR><BR>Sorry, something went wrong... :-(<BR><BR>Your request was terminated by the crt.sh database server after <B>14</B> seconds with the following messages:<BR><BR><TEXTAREA readonly rows="8" cols="100">FATAL:  terminating connection due to conflict with recovery\nDETAIL:  User query might have needed to see row versions that must be removed.\nCONTEXT:  PL/pgSQL function web_apis(text,text[],text[]) line 4746 at FOR over EXECUTE statement\nERROR:  server conn crashed?\nserver closed the connection unexpectedly\n\tThis probably means the server terminated abnormally\n\tbefore or while processing the request.\n</TEXTAREA><BR><BR>Unfortunately, searches that would produce many results may never succeed. For other requests, please try again later.<BR><BR><BR><P class="copyright">&copy; Sectigo Limited 2015-2025. All rights reserved.</P><DIV><A href="https://sectigo.com/"><IMG src="/sectigo_s.png"></A>&nbsp;<A href="https://github.com/crtsh"><IMG src="/GitHub-Mark-32px.png"></A></DIV></BODY></HTML>'
+2025-12-14 23:06:17,884 [TRACE] bbot.modules.otx logger.py:151 API response to https://otx.alienvault.com/api/v1/indicators/domain/stankin.ru/passive_dns failed with status code 429: {"detail": "Anonymous access to this endpoint is limited. Please authenticate."}

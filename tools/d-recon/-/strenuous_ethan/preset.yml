@@ -1,0 +1,10 @@
+description: strenuous_ethan
+exclude_modules:
+- extractous
+- jadx
+- social
+- trufflehog
+flags:
+- passive
+output_modules:
+- json

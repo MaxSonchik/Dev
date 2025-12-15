@@ -1,0 +1,54 @@
+2025-12-14 23:05:16,462 [HUGESUCCESS] bbot.scanner logger.py:151 Starting scan strenuous_ethan
+2025-12-14 23:05:17,612 [INFO] bbot.modules.anubisdb base.py:1533 Error parsing results for query "stankin.ru" (status code 301)
+2025-12-14 23:05:17,648 [INFO] bbot.modules.leakix base.py:1533 Error parsing results for query "stankin.ru" (status code 505)
+2025-12-14 23:05:31,487 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) dnsresolve(865:25:0), shodan_idb(439:1:0), crt(302:1:0), crt_db(302:1:0), otx(302:1:0), wayback(302:1:0), httpx(112:45:0), dnsbimi(118:1:0), dnscaa(118:1:0), dnstlsrpt(118:1:0), speculate(0:0:97), ipneighbor(0:0:14), excavate(0:7:0), affiliates(0:1:0), google_playstore(0:1:0), portfilter(0:0:1)
+2025-12-14 23:05:31,487 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: DNS_NAME: 291, EMAIL_ADDRESS: 58, URL: 41, OPEN_TCP_PORT: 11, URL_UNVERIFIED: 10, TECHNOLOGY: 5, ASN: 4, SCAN: 1, ORG_STUB: 1, IP_ADDRESS: 1, AZURE_TENANT: 1, SOCIAL: 1, FINDING: 1
+2025-12-14 23:05:31,487 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: 8,116 events in queue (7,476 processed in the past 15 seconds)
+2025-12-14 23:05:46,489 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) dnsresolve(2,022:25:0), shodan_idb(905:1:0), crt(648:1:0), crt_db(648:1:0), otx(648:1:0), httpx(59:388:0)
+2025-12-14 23:05:46,489 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: DNS_NAME: 618, URL_UNVERIFIED: 304, URL: 65, EMAIL_ADDRESS: 65, OPEN_TCP_PORT: 50, TECHNOLOGY: 25, ASN: 11, FINDING: 8, IP_ADDRESS: 2, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1
+2025-12-14 23:05:46,489 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: No events in queue (21,130 processed in the past 15 seconds)
+2025-12-14 23:05:55,439 [INFO] bbot.modules.crt base.py:1533 Error parsing results for query "stankin.ru" (status code 503)
+2025-12-14 23:06:01,498 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) httpx(1,529:388:3), cloudcheck(73:1:1,001), excavate(1,001:8:0), shodan_idb(794:1:0), otx(716:1:0), dnsresolve(0:2:73)
+2025-12-14 23:06:01,498 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 1412, DNS_NAME: 661, URL: 130, OPEN_TCP_PORT: 87, EMAIL_ADDRESS: 75, TECHNOLOGY: 27, IP_ADDRESS: 14, ASN: 11, FINDING: 8, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1
+2025-12-14 23:06:01,498 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: 4,684 events in queue (8,898 processed in the past 15 seconds)
+2025-12-14 23:06:16,512 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) httpx(2,164:388:0), excavate(1,623:8:0), cloudcheck(0:0:1,623), otx(880:1:0), portfilter(0:0:398), speculate(1:1:50), json(10:1:0), dnsresolve(0:3:0), affiliates(1:1:0)
+2025-12-14 23:06:16,512 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 1629, DNS_NAME: 802, URL: 223, OPEN_TCP_PORT: 121, EMAIL_ADDRESS: 77, TECHNOLOGY: 41, IP_ADDRESS: 14, ASN: 14, FINDING: 13, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1
+2025-12-14 23:06:16,512 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: 10,442 events in queue (6,884 processed in the past 15 seconds)
+2025-12-14 23:06:31,513 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) httpx(9,174:388:0), otx(1,038:1:0)
+2025-12-14 23:06:31,513 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 7441, DNS_NAME: 834, URL: 301, OPEN_TCP_PORT: 288, EMAIL_ADDRESS: 99, FINDING: 61, TECHNOLOGY: 53, IP_ADDRESS: 18, ASN: 14, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1, CODE_REPOSITORY: 1
+2025-12-14 23:06:31,513 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: No events in queue (23,826 processed in the past 15 seconds)
+2025-12-14 23:06:46,620 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) otx(1,039:1:0), excavate(328:8:0), cloudcheck(0:0:328), httpx(69:128:0), dnsresolve(1:0:0), affiliates(1:0:0), portfilter(0:1:0), speculate(1:0:0)
+2025-12-14 23:06:46,620 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 7450, DNS_NAME: 835, URL: 335, OPEN_TCP_PORT: 289, EMAIL_ADDRESS: 99, FINDING: 61, TECHNOLOGY: 53, IP_ADDRESS: 18, ASN: 14, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1, CODE_REPOSITORY: 1
+2025-12-14 23:06:46,620 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: 3,159 events in queue (2,058 processed in the past 15 seconds)
+2025-12-14 23:07:01,622 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) httpx(532:8:0), excavate(0:0:4), portfilter(4:0:0), json(1:1:0), cloudcheck(0:1:0)
+2025-12-14 23:07:01,622 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 9228, DNS_NAME: 844, URL: 401, OPEN_TCP_PORT: 300, EMAIL_ADDRESS: 101, FINDING: 74, TECHNOLOGY: 53, IP_ADDRESS: 18, ASN: 14, CODE_REPOSITORY: 3, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1
+2025-12-14 23:07:01,622 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: 4,340 events in queue (11,115 processed in the past 15 seconds)
+2025-12-14 23:07:16,622 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) dnsresolve(0:8:0)
+2025-12-14 23:07:16,622 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 10286, DNS_NAME: 850, URL: 412, OPEN_TCP_PORT: 302, EMAIL_ADDRESS: 101, FINDING: 78, TECHNOLOGY: 53, IP_ADDRESS: 18, ASN: 14, CODE_REPOSITORY: 3, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1
+2025-12-14 23:07:16,623 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: No events in queue (5,137 processed in the past 15 seconds)
+2025-12-14 23:07:31,625 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Modules running (incoming:processing:outgoing) dnsresolve(0:14:0)
+2025-12-14 23:07:31,625 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: Events produced so far: URL_UNVERIFIED: 10294, DNS_NAME: 850, URL: 415, OPEN_TCP_PORT: 302, EMAIL_ADDRESS: 101, FINDING: 78, TECHNOLOGY: 53, IP_ADDRESS: 18, ASN: 14, CODE_REPOSITORY: 3, SCAN: 1, ORG_STUB: 1, AZURE_TENANT: 1, SOCIAL: 1
+2025-12-14 23:07:31,625 [INFO] bbot.scanner scanner.py:1187 strenuous_ethan: No events in queue (111 processed in the past 15 seconds)
+2025-12-14 23:07:45,881 [INFO] bbot.scanner scanner.py:790 Finishing scan
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | Affiliate                             | Score   | Count   |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +=======================================+=========+=========+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | 1x.png                                | 243.00  | 243     |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | 1x.jpg                                | 171.00  | 171     |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | 2x.jpg                                | 128.00  | 128     |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | yandex.ru                             | 82.50   | 83      |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | docker.com                            | 31.00   | 48      |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | cloudflare.com                        | 27.50   | 24      |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | mail.ru                               | 26.50   | 27      |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | gov.ru                                | 26.00   | 27      |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | googleusercontent.com                 | 22.50   | 23      |
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 +---------------------------------------+---------+---------+
+2025-12-14 23:07:46,134 [INFO] bbot.modules.affiliates base.py:1533 | google.com                            | 21.50   | 22      |
